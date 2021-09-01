@@ -459,22 +459,26 @@ namespace SGBotic {
         if (wifi_connected) {
 
             sendAT("AT+CIPSTART=\"TCP\",\"maker.ifttt.com\",80");
-            resp_ok = cmdResponse("OK");
+            basic.pause(100);
+            //resp_ok = cmdResponse("OK");
 
             packetLength = httpPacket.length + 4;
 
             sendAT("AT+CIPSEND=" + packetLength.toString());
-            resp_ok = cmdResponse("OK");
+            basic.pause(500);
+            //resp_ok = cmdResponse("OK");
             //resp_ok = cmdResponse(">");
             serial.writeString(httpPacket + "\u000D\u000A\u000D\u000A");
 
             basic.pause(2000);
 
             sendAT("AT+CIPCLOSE");
-            resp_ok = cmdResponse("OK");
+            basic.pause(500);
+            //resp_ok = cmdResponse("OK");
             //require 2nd CIPCLOSE to properly close the connection
             sendAT("AT+CIPCLOSE");
-            resp_ok = cmdResponse("OK");
+            basic.pause(500);
+            //resp_ok = cmdResponse("OK");
 
         }
     }
