@@ -464,8 +464,8 @@ namespace SGBotic {
             packetLength = httpPacket.length + 4;
 
             sendAT("AT+CIPSEND=" + packetLength.toString());
-            //resp_ok = cmdResponse("OK");
-            resp_ok = cmdResponse(">");
+            resp_ok = cmdResponse("OK");
+            //resp_ok = cmdResponse(">");
             serial.writeString(httpPacket + "\u000D\u000A\u000D\u000A");
 
             basic.pause(2000);
