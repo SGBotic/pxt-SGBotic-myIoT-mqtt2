@@ -1,0 +1,13 @@
+{
+  "SGBotic": "SGBotic blocks",
+  "SGBotic.IFTTT_set": "Send value to IFTTT",
+  "SGBotic.connectUbidots": "Connect to Ubidots IoT platform Token",
+  "SGBotic.getWifiConectionStatus": "Get Wifi Connection Status",
+  "SGBotic.ipAddr": "Get IP Address",
+  "SGBotic.myIoT_module_init": "myIoT connect to wifi",
+  "SGBotic.onMessageReceived": "The function is a callback function. It executes block inside the function whenever message from subscribed topic is received",
+  "SGBotic.ubidotsPub": "Send numerical data to Ubidots. Maximum three devices for free STEM account.",
+  "SGBotic.ubidotsSubRcvValue": "Value of the variable in numerical.",
+  "SGBotic.ubidotsSubVarRcv": "Ubidots variable received",
+  "SGBotic.ubidotsSubscribe": "Subscribe to MQTT topic"
+}

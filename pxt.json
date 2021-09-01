@@ -1,0 +1,21 @@
+{
+    "name": "pxt-SGBotic-myIoT-MQTT2",
+    "version": "0.1.15",
+    "description": "Makdecode extension for IoT Module",
+    "dependencies": {
+        "core": "*",
+        "radio": "*",
+        "microphone": "*"
+    },
+    "files": [
+        "README.md",
+        "myIoT.ts",
+        "base.ts",
+        "myIoT.cpp"
+    ],
+    "testFiles": [
+        "test.ts"
+    ],
+    "public": false,
+    "preferredEditor": "tsprj"
+}

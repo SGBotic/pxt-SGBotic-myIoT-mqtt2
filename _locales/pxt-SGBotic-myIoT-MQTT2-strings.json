@@ -1,0 +1,18 @@
+{
+  "SGBotic.IFTTT_set|block": "IFTTT Set| Event Name = %event_name| Write API key = %ifttt_key| Value 1 = %value1|| Value 2 = %value2| Value 3 = %value3",
+  "SGBotic.connectUbidots|block": "connect to Ubidots| using token %TKN| client ID %clientid",
+  "SGBotic.getWifiConectionStatus|block": "wifi connected?",
+  "SGBotic.ipAddr|block": "IP address",
+  "SGBotic.myIoT_module_init|block": "Connect myIoT module | Serial setup: |RX pin connect to %pinTX|TX pin connect to %pinRX | Wifi setup:| SSID %ssid|Password: %pwd | led matrix feedback %fb",
+  "SGBotic.onMessageReceived|block": "Ubidots on message received",
+  "SGBotic.ubidotsPub|block": "send numerical value %ubidotsValue to |device %ubidotsDevice|variable %ubidotsVariable",
+  "SGBotic.ubidotsSubRcvValue|block": "value of iotNode's Variable %subVariable",
+  "SGBotic.ubidotsSubVarRcv|block": "Ubidots Varaible received",
+  "SGBotic.ubidotsSubscribe|block": "subscribe to device iotNode variable %ubidotsSubVariable",
+  "SGBotic|block": "SGBotic",
+  "{id:category}SGBotic": "SGBotic",
+  "{id:group}IFTTT": "IFTTT",
+  "{id:group}Ubidots": "Ubidots",
+  "{id:group}Wifi": "Wifi",
+  "{id:subcategory}myIoT-MQTT2": "myIoT-MQTT2"
+}
