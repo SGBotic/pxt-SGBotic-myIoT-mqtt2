@@ -2,7 +2,6 @@
   "SGBotic": "SGBotic blocks",
   "SGBotic.IFTTT_set": "Send value to IFTTT",
   "SGBotic.connectUbidots": "Connect to Ubidots IoT platform Token",
-  "SGBotic.dummy_1": "dummy",
   "SGBotic.dummy_2": "dummy",
   "SGBotic.getWifiConectionStatus": "Get Wifi Connection Status",
   "SGBotic.ipAddr": "Get IP Address",
