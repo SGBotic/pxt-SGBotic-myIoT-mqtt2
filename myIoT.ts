@@ -23,8 +23,6 @@ namespace SGBotic {
         }
     }
 
-    let uartHandlerStarted: boolean = false;
-
     let mqttSubMessage: mqttSubPacket[] = []
     let mqttSubVarRcv: string = ""
     let mqttSubValue: string = ""
@@ -54,10 +52,9 @@ namespace SGBotic {
         wifi_serial_obj.sending_data = false
     }
 
-    function cmdResponse(resp_code: string): boolean {
+    function cmdResponse(resp_code: string, wait: number = 100): boolean {
         let response_str: string = ""
         let time: number = input.runningTime()
-        if (!uartHandlerStarted) {
             while (true) {
                 response_str += serial.readString()
                 if (response_str.includes(resp_code)) {
@@ -68,10 +65,6 @@ namespace SGBotic {
                     return false;
                 }
             }
-        } else {
-            basic.pause(1000);
-            return true;
-        }
     }
 
     // wait for certain response from ESP8266
@@ -79,7 +72,6 @@ namespace SGBotic {
         let serial_str: string = ""
         let result: boolean = false
         let time: number = input.runningTime()
-        if (!uartHandlerStarted) {
             while (true) {
                 serial_str += serial.readString()
                 //serial_str += serial.readUntil(serial.delimiters(Delimiters.NewLine))
@@ -93,10 +85,6 @@ namespace SGBotic {
                 if (input.runningTime() - time > 10000) break
             }
             return result
-        } else {
-            basic.pause(1000);
-            return true;
-        }
     }
 
     function cipStatusResponse(): boolean {
@@ -147,7 +135,7 @@ namespace SGBotic {
     */
     //% subcategory=myIoT-MQTT2
     //% weight=200 color=#FCCE9D
-    //% block="dummy_14Sept"
+    //% block="dummy_2"
     export function dummy_2(): void {
     }
 
@@ -400,8 +388,7 @@ namespace SGBotic {
         let strVariable: string = ""
         let strValue: string = ""
 
-        uartHandlerStarted = true;
-
+       
         while (wifi_serial_obj.sending_data) {
             basic.pause(100)
         }

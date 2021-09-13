@@ -58,7 +58,7 @@ const pxsim_pxtrt = pxsim.pxtrt;
 const pxsim_numops = pxsim.numops;
 
 
-function _main___P3864147(s) {
+function _main___P4498692(s) {
 let r0 = s.r0, step = s.pc;
 s.pc = -1;
 
@@ -68,27 +68,27 @@ if (yieldSteps-- < 0 && maybeYield(s, step, r0) || runtime !== pxsim.runtime) re
 switch (step) {
   case 0:
 
-    globals._intervals___3864533 = (undefined);
-    globals._pollEventQueue___3864749 = (undefined);
-    r0 = pxsim_pxtcore_mkClassInstance(SGBotic_wifi_serial_class__C3864917_VT);
+    globals._intervals___4499078 = (undefined);
+    globals._pollEventQueue___4499294 = (undefined);
+    r0 = pxsim_pxtcore_mkClassInstance(SGBotic_wifi_serial_class__C4499462_VT);
     s.tmp_0 = r0;
-    s.tmp_1 = SGBotic_wifi_serial_class_constructor__P3864918_mk(s);
+    s.tmp_1 = SGBotic_wifi_serial_class_constructor__P4499463_mk(s);
     s.tmp_1.arg0 = s.tmp_0;
     s.callLocIdx = 0; s.pc = 1; return s.tmp_1;
   case 1:
     r0 = s.retval;
-    globals.wifi_serial_obj___3864935 = (s.tmp_0);
+    globals.wifi_serial_obj___4499478 = (s.tmp_0);
     r0 = undefined;
     return leave(s, r0)
   default: oops()
 } } }
-_main___P3864147.info = {"start":0,"length":0,"line":0,"column":0,"endLine":0,"endColumn":0,"fileName":"base.ts","functionName":"<main>","argumentNames":[]}
-_main___P3864147.continuations = [  ]
+_main___P4498692.info = {"start":0,"length":0,"line":0,"column":0,"endLine":0,"endColumn":0,"fileName":"base.ts","functionName":"<main>","argumentNames":[]}
+_main___P4498692.continuations = [  ]
 
-function _main___P3864147_mk(s) {
+function _main___P4498692_mk(s) {
     checkStack(s.depth);
     return {
-        parent: s, fn: _main___P3864147, depth: s.depth + 1,
+        parent: s, fn: _main___P4498692, depth: s.depth + 1,
         pc: 0, retval: undefined, r0: undefined, overwrittenPC: false, lambdaArgs: null,
   tmp_0: undefined,
   tmp_1: undefined,
@@ -98,7 +98,7 @@ function _main___P3864147_mk(s) {
 
 
 
-function SGBotic_wifi_serial_class_constructor__P3864918(s) {
+function SGBotic_wifi_serial_class_constructor__P4499463(s) {
 let r0 = s.r0, step = s.pc;
 s.pc = -1;
 
@@ -113,19 +113,19 @@ switch (step) {
       s.lambdaArgs = null;
     }
     r0 = s.arg0;
-    if (!checkSubtype(r0, SGBotic_wifi_serial_class__C3864917_VT)) failedCast(r0);
+    if (!checkSubtype(r0, SGBotic_wifi_serial_class__C4499462_VT)) failedCast(r0);
     r0 = (s.arg0).fields["sending_data"] = (false);
     r0 = (s.arg0).fields["mqtt_busy"] = (false);
     r0 = undefined;
     return leave(s, r0)
   default: oops()
 } } }
-SGBotic_wifi_serial_class_constructor__P3864918.info = {"start":150,"length":98,"line":9,"column":8,"endLine":12,"endColumn":9,"fileName":"myIoT.ts","functionName":"inline","argumentNames":["this"]}
+SGBotic_wifi_serial_class_constructor__P4499463.info = {"start":150,"length":98,"line":9,"column":8,"endLine":12,"endColumn":9,"fileName":"myIoT.ts","functionName":"inline","argumentNames":["this"]}
 
-function SGBotic_wifi_serial_class_constructor__P3864918_mk(s) {
+function SGBotic_wifi_serial_class_constructor__P4499463_mk(s) {
     checkStack(s.depth);
     return {
-        parent: s, fn: SGBotic_wifi_serial_class_constructor__P3864918, depth: s.depth + 1,
+        parent: s, fn: SGBotic_wifi_serial_class_constructor__P4499463, depth: s.depth + 1,
         pc: 0, retval: undefined, r0: undefined, overwrittenPC: false, lambdaArgs: null,
   arg0: undefined,
 } }
@@ -133,7 +133,7 @@ function SGBotic_wifi_serial_class_constructor__P3864918_mk(s) {
 
 
 
-const SGBotic_wifi_serial_class__C3864917_VT = mkVTable({
+const SGBotic_wifi_serial_class__C4499462_VT = mkVTable({
   name: "wifi_serial_class",
   numFields: 2,
   classNo: 16,
@@ -149,7 +149,7 @@ const SGBotic_wifi_serial_class__C3864917_VT = mkVTable({
   },
 });
 
-const breakpoints = setupDebugger(1, ["wifi_serial_obj___3864935"])
+const breakpoints = setupDebugger(1, ["wifi_serial_obj___4499478"])
 
-return _main___P3864147
+return _main___P4498692
 })
