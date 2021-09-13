@@ -148,10 +148,17 @@ namespace SGBotic {
     //% subcategory=myIoT-MQTT2
     //% weight=200 color=#FCCE9D
     //% block="dummy_13Sept"
-    export function dummy_1(): string {
-        return ipaddress;
+    export function dummy_1(): void {
     }
 
+/**
+    * dummy
+    */
+    //% subcategory=myIoT-MQTT2
+    //% weight=200 color=#FCCE9D
+    //% block="dummy_14Sept"
+    export function dummy_2(): void {
+    }
 
     /**
     * myIoT connect to wifi
