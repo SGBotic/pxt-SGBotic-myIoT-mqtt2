@@ -15,6 +15,5 @@
   "{id:group}IFTTT": "IFTTT",
   "{id:group}Ubidots": "Ubidots",
   "{id:group}Wifi": "Wifi",
-  "{id:subcategory}myIoT-MQTT2": "myIoT-MQTT2",
-  "{id:subcategory}myIoT-things": "myIoT-things"
+  "{id:subcategory}myIoT-MQTT2": "myIoT-MQTT2"
 }

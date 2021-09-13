@@ -145,7 +145,7 @@ namespace SGBotic {
     /**
     * dummy
     */
-    //% subcategory=myIoT-things
+    //% subcategory=myIoT-MQTT2
     //% weight=200 color=#FCCE9D
     //% block="dummy_13Sept"
     export function dummy_1(): string {
