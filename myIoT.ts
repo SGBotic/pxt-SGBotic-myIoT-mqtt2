@@ -23,6 +23,8 @@ namespace SGBotic {
         }
     }
 
+    let uartHandlerStarted: boolean = false;
+
     let mqttSubMessage: mqttSubPacket[] = []
     let mqttSubVarRcv: string = ""
     let mqttSubValue: string = ""
@@ -55,16 +57,20 @@ namespace SGBotic {
     function cmdResponse(resp_code: string): boolean {
         let response_str: string = ""
         let time: number = input.runningTime()
-
-        while (true) {
-            response_str += serial.readString()
-            if (response_str.includes(resp_code)) {
-                resp_str = response_str;
-                return true;
+        if (!uartHandlerStarted) {
+            while (true) {
+                response_str += serial.readString()
+                if (response_str.includes(resp_code)) {
+                    resp_str = response_str;
+                    return true;
+                }
+                if (input.runningTime() - time > 30000) {
+                    return false;
+                }
             }
-            if (input.runningTime() - time > 30000) {
-                return false;
-            }
+        } else {
+            basic.pause(1000);
+            return true;
         }
     }
 
@@ -73,19 +79,24 @@ namespace SGBotic {
         let serial_str: string = ""
         let result: boolean = false
         let time: number = input.runningTime()
-        while (true) {
-            serial_str += serial.readString()
-            //serial_str += serial.readUntil(serial.delimiters(Delimiters.NewLine))
-            //if (serial_str.length >100) serial_str = serial_str.substr(serial_str.length - 100)
-            if (serial_str.includes("OK") && serial_str.includes("CONNECTED")) {
-                result = true
-                break
-            } else if (serial_str.includes("ERROR") || serial_str.includes("SEND FAIL")) {
-                break
+        if (!uartHandlerStarted) {
+            while (true) {
+                serial_str += serial.readString()
+                //serial_str += serial.readUntil(serial.delimiters(Delimiters.NewLine))
+                //if (serial_str.length >100) serial_str = serial_str.substr(serial_str.length - 100)
+                if (serial_str.includes("OK") && serial_str.includes("CONNECTED")) {
+                    result = true
+                    break
+                } else if (serial_str.includes("ERROR") || serial_str.includes("SEND FAIL")) {
+                    break
+                }
+                if (input.runningTime() - time > 10000) break
             }
-            if (input.runningTime() - time > 10000) break
+            return result
+        } else {
+            basic.pause(1000);
+            return true;
         }
-        return result
     }
 
     function cipStatusResponse(): boolean {
@@ -244,7 +255,7 @@ namespace SGBotic {
         //let userCfg: string = "AT+MQTTUSERCFG=0,1,\"microbit\",\"" + TKN + "\",\"ubidots_user_name\",0,0,\"\"";
         //let userCfg: string = "AT+MQTTUSERCFG=0,1,\"microbit\",\"" + TKN + "\",\"" + ubidotsClientID + "\",0,0,\"\"";
         let userCfg: string = "AT+MQTTUSERCFG=0,1,\"" + clientid + "\",\"" + TKN + "\",\"microbit\",0,0,\"\"";
-        
+
         sendAT(userCfg)
         basic.pause(1000)
         //cmdResponse("OK")
@@ -282,7 +293,7 @@ namespace SGBotic {
         sendAT("AT+MQTTPUB=0," + "\"" + ubidots_pub_str + "\"" + "," + "\"" + ubidotsValue + "\"" + ",1,0");
         //sendAT("AT+MQTTPUB=0,\"/v1.6/devices/deviceID/variableID\",\"19.9\",1,0");
         //cmdResponse("OK");
-        
+
 
         while (true) {
             pubResp_str = serial.readLine()
@@ -382,6 +393,8 @@ namespace SGBotic {
         let strVariable: string = ""
         let strValue: string = ""
 
+        uartHandlerStarted = true;
+
         while (wifi_serial_obj.sending_data) {
             basic.pause(100)
         }
@@ -456,31 +469,31 @@ namespace SGBotic {
 
         httpPacket = "GET " + uri + " HTTP/1.1\r\nHost: " + host + "\r\n\r\n";
 
-        if (wifi_connected) {
+        control.runInParallel(() => {
+            if (wifi_connected) {
+                sendAT("AT+CIPSTART=\"TCP\",\"maker.ifttt.com\",80");
+                basic.pause(1000);
+                //resp_ok = cmdResponse("OK");
 
-            sendAT("AT+CIPSTART=\"TCP\",\"maker.ifttt.com\",80");
-            basic.pause(1000);
-            //resp_ok = cmdResponse("OK");
+                packetLength = httpPacket.length + 4;
 
-            packetLength = httpPacket.length + 4;
+                sendAT("AT+CIPSEND=" + packetLength.toString());
+                basic.pause(1000);
+                //resp_ok = cmdResponse("OK");
+                //resp_ok = cmdResponse(">");
+                serial.writeString(httpPacket + "\u000D\u000A\u000D\u000A");
 
-            sendAT("AT+CIPSEND=" + packetLength.toString());
-            basic.pause(1000);
-            //resp_ok = cmdResponse("OK");
-            //resp_ok = cmdResponse(">");
-            serial.writeString(httpPacket + "\u000D\u000A\u000D\u000A");
+                basic.pause(2000);
 
-            basic.pause(2000);
-
-            sendAT("AT+CIPCLOSE");
-            basic.pause(1000);
-            //resp_ok = cmdResponse("OK");
-            //require 2nd CIPCLOSE to properly close the connection
-            sendAT("AT+CIPCLOSE");
-            basic.pause(1000);
-            //resp_ok = cmdResponse("OK");
-
-        }
+                sendAT("AT+CIPCLOSE");
+                basic.pause(1000);
+                //resp_ok = cmdResponse("OK");
+                //require 2nd CIPCLOSE to properly close the connection
+                //sendAT("AT+CIPCLOSE");
+                //basic.pause(1000);
+                //resp_ok = cmdResponse("OK");
+            }
+        });
     }
 
 
